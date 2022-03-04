@@ -216,7 +216,7 @@
         <button id="helix">HELIX</button>
         <button id="grid">GRID</button>
         <button id="table2">TEST</button><br/>
-				<video id="video" playsinline controls mute webkit-playsinline  autoplay width="320" height="240" src="./assets/video/DJMax_ClearBlueSky.mp4" style="border: 1px 1px black;"></video>
+				<video id="video" playsinline controls muted webkit-playsinline  autoplay width="320" height="240" src="./assets/video/DJMax_ClearBlueSky.mp4" style="border: 1px 1px black;"></video>
 
       </div>
 
@@ -395,6 +395,17 @@
 
 			// Office_Torus_Check
 			let mesh_Torus02, mesh_gridbox02_Tester
+			let mesh_FenceBannerL0, mesh_gridbox4_Tester, mesh_WoodMat_Tester
+
+			// Mesh_Gear01_L01
+			let mesh_Gear01_L01, mesh_Gear01_L02
+			let mesh_Gear02_L01, mesh_Gear02_L02
+			let mesh_Gear03_L01
+			let mesh_Gear04_L01
+			let mesh_Gear05_L01
+			let mesh_Gear06_L01
+			let mesh_Gear06_L02
+
 
 			// Objects init
 			const objects = [];
@@ -457,7 +468,10 @@
 				// Camera Setup
 				// Search.Camera
 				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 5000000 );
-				camera.position.set(85161, 90000, 25096.255);
+				// Below Code is for Depolyment not for Development
+				// camera.position.set(85161, 90000, 25096.255);
+
+				camera.position.set(0, 2000, 0)
 				// camera.lookAt(1000,1000,0)
 
 				// Scene Setup
@@ -941,6 +955,137 @@
 				objects.push(mesh_Tube01)
 
 
+				const FenceTest = new THREE.Group()
+			 	FenceTest.position.set(0, 0, 0)
+
+				const geo_FenceBannerL0 = new THREE.CircleGeometry(10000, 10000)
+				const mat_FenceBannerL0 = new THREE.MeshBasicMaterial({ map: testImg04, side: THREE.DoubleSide });
+				mesh_FenceBannerL0 = new THREE.Mesh(geo_FenceBannerL0, mat_FenceBannerL0)
+				mat_FenceBannerL0.transparent = false
+				mat_FenceBannerL0.alphaMap = testImg04
+				mesh_FenceBannerL0.position.set(0, 1000, 0)
+				mesh_FenceBannerL0.rotateX( - Math.PI / 2 )
+				mesh_FenceBannerL0.scale.set(0, 0, 0)
+				mesh_FenceBannerL0.rotation.set(0, 50, 0)
+				scene.add(mesh_FenceBannerL0)
+				// FenceTest.add(mesh_FenceBannerL0)
+
+				// Final FenceTest Push to Scene
+				// scene.add(FenceTest);
+
+				const GearDecorationA = new THREE.Group()
+				GearDecorationA.position.set(-50000, 40000, -50000)
+				GearDecorationA.rotateX( Math.PI / 2 )
+				// GearDecorationA.scale.set(1, 1, 0)
+
+
+				const geo_WoodMat_Tester = new THREE.PlaneGeometry(5000, 5000)
+				const mat_WoodMat_Tester = new THREE.MeshBasicMaterial({ map: testImg04, side: THREE.DoubleSide });
+				mesh_WoodMat_Tester = new THREE.Mesh(geo_WoodMat_Tester, mat_WoodMat_Tester);
+				mat_WoodMat_Tester.transparent = false;
+				mat_WoodMat_Tester.alphaMap = testImg04;
+				mesh_WoodMat_Tester.rotateX( - Math.PI / 2 )
+				mesh_WoodMat_Tester.position.set(0, -100, 0)
+				mesh_WoodMat_Tester.scale.set(12, 6, 0)
+				GearDecorationA.add(mesh_WoodMat_Tester)
+
+				const geo_Gear01_L01 = new THREE.CircleGeometry(5000, 5000)
+				const mat_Gear01_L01 = new THREE.MeshBasicMaterial({ map: GearTex01, side: THREE.DoubleSide });
+				mesh_Gear01_L01 = new THREE.Mesh(geo_Gear01_L01, mat_Gear01_L01);
+				mat_Gear01_L01.transparent = true;
+				mat_Gear01_L01.alphaMap = GearTex01;
+				mesh_Gear01_L01.rotateX( - Math.PI / 2 )
+				mesh_Gear01_L01.position.set(-3000, 100, -950)
+				mesh_Gear01_L01.scale.set(1, 1, 0)
+				GearDecorationA.add(mesh_Gear01_L01)
+
+				const geo_Gear01_L02 = new THREE.CircleGeometry(5000, 5000)
+				const mat_Gear01_L02 = new THREE.MeshBasicMaterial({ map: GearTex02, side: THREE.DoubleSide });
+				mesh_Gear01_L02 = new THREE.Mesh(geo_Gear01_L02, mat_Gear01_L02);
+				mat_Gear01_L02.transparent = true;
+				mat_Gear01_L02.alphaMap = GearTex02;
+				mesh_Gear01_L02.rotateX( - Math.PI / 2 )
+				mesh_Gear01_L02.position.set(-3000, 200, -950)
+				mesh_Gear01_L02.scale.set(1, 1, 0)
+				GearDecorationA.add(mesh_Gear01_L02)
+
+				const geo_Gear02_L01 = new THREE.CircleGeometry(5000, 5000)
+				const mat_Gear02_L01 = new THREE.MeshBasicMaterial({ map: GearTex03, side: THREE.DoubleSide });
+				mesh_Gear02_L01 = new THREE.Mesh(geo_Gear02_L01, mat_Gear02_L01);
+				mat_Gear02_L01.transparent = true;
+				mat_Gear02_L01.alphaMap = GearTex03;
+				mesh_Gear02_L01.rotateX( - Math.PI / 2 )
+				mesh_Gear02_L01.position.set(-14479, 100, -7050)
+				mesh_Gear02_L01.scale.set(1.5, 1.5, 0)
+				GearDecorationA.add(mesh_Gear02_L01)
+
+				const geo_Gear02_L02 = new THREE.CircleGeometry(3000, 3000)
+				const mat_Gear02_L02 = new THREE.MeshBasicMaterial({ map: GearTex05, side: THREE.DoubleSide });
+				mesh_Gear02_L02 = new THREE.Mesh(geo_Gear02_L02, mat_Gear02_L02);
+				mat_Gear02_L02.transparent = true;
+				mat_Gear02_L02.alphaMap = GearTex05;
+				mesh_Gear02_L02.rotateX( - Math.PI / 2 )
+				mesh_Gear02_L02.position.set(-14479, 200, -7050)
+				mesh_Gear02_L02.scale.set(1.5, 1.5, 0)
+				GearDecorationA.add(mesh_Gear02_L02)
+
+				const geo_Gear03_L01 = new THREE.CircleGeometry(1000, 1000)
+				const mat_Gear03_L01 = new THREE.MeshBasicMaterial({ map: GearTex04, side: THREE.DoubleSide });
+				mesh_Gear03_L01 = new THREE.Mesh(geo_Gear03_L01, mat_Gear03_L01);
+				mat_Gear03_L01.transparent = true;
+				mat_Gear03_L01.alphaMap = GearTex04;
+				mesh_Gear03_L01.rotateX( - Math.PI / 2 )
+				mesh_Gear03_L01.position.set(-10580, 200, -1900)
+				mesh_Gear03_L01.scale.set(1.5, 1.5, 0)
+				GearDecorationA.add(mesh_Gear03_L01)
+
+				const geo_Gear04_L01 = new THREE.CircleGeometry(3000, 3000)
+				const mat_Gear04_L01 = new THREE.MeshBasicMaterial({ map: GearTex06, side: THREE.DoubleSide });
+				mesh_Gear04_L01 = new THREE.Mesh(geo_Gear04_L01, mat_Gear04_L01);
+				mat_Gear04_L01.transparent = true;
+				mat_Gear04_L01.alphaMap = GearTex06;
+				mesh_Gear04_L01.rotateX( - Math.PI / 2 )
+				mesh_Gear04_L01.position.set(-20100, 200, 0)
+				mesh_Gear04_L01.scale.set(1.5, 1.5, 0)
+				GearDecorationA.add(mesh_Gear04_L01)
+
+				const geo_Gear05_L01 = new THREE.CircleGeometry(3000, 3000)
+				const mat_Gear05_L01 = new THREE.MeshBasicMaterial({ map: GearTex07, side: THREE.DoubleSide });
+				mesh_Gear05_L01 = new THREE.Mesh(geo_Gear05_L01, mat_Gear05_L01);
+				mat_Gear05_L01.transparent = true;
+				mat_Gear05_L01.alphaMap = GearTex07;
+				mesh_Gear05_L01.rotateX( - Math.PI / 2 )
+				mesh_Gear05_L01.position.set(-19000, 100, 7500)
+				mesh_Gear05_L01.scale.set(1, 1, 0)
+				GearDecorationA.add(mesh_Gear05_L01)
+
+				const geo_Gear06_L01 = new THREE.CircleGeometry(5000, 5000)
+				const mat_Gear06_L01 = new THREE.MeshBasicMaterial({ map: GearTex02, side: THREE.DoubleSide });
+				mesh_Gear06_L01 = new THREE.Mesh(geo_Gear06_L01, mat_Gear06_L01);
+				mat_Gear06_L01.transparent = true;
+				mat_Gear06_L01.alphaMap = GearTex02;
+				mesh_Gear06_L01.rotateX( - Math.PI / 2 )
+				mesh_Gear06_L01.position.set(15200, 5000, 5050)
+				mesh_Gear06_L01.scale.set(3, 3, 0)
+				GearDecorationA.add(mesh_Gear06_L01)
+
+				const geo_Gear06_L02 = new THREE.CircleGeometry(5000, 5000)
+				const mat_Gear06_L02 = new THREE.MeshBasicMaterial({ map: GearTex06, side: THREE.DoubleSide });
+				mesh_Gear06_L02 = new THREE.Mesh(geo_Gear06_L02, mat_Gear06_L02);
+				mat_Gear06_L02.transparent = true;
+				mat_Gear06_L02.alphaMap = GearTex06;
+				mesh_Gear06_L02.rotateX( - Math.PI / 2 )
+				mesh_Gear06_L02.position.set(15200, 100, 5050)
+				mesh_Gear06_L02.scale.set(3, 3, 0)
+				GearDecorationA.add(mesh_Gear06_L02)
+
+				// Gear Decoration Scene Final Push
+				scene.add(GearDecorationA);
+				
+				
+
+
+
 				// // 2nd param = Donut = 5000
 				// const geo_Torus01 = new THREE.TorusGeometry(225000, 77500, 16, 32, Math.PI * 2 )
 				// const mat_Torus01 = new THREE.MeshBasicMaterial({ map: testImg02, side: THREE.DoubleSide });
@@ -1082,25 +1227,81 @@
 				const folderCamera = gui.addFolder('ToolBox');
 
 				// Search.GUI.TestSettings - Scale
-				folderMainSettings.add(mesh_Tube01.position, 'x').min(-90000).max(90000).step(1).name('Position-x');
-				folderMainSettings.add(mesh_Tube01.position, 'y').min(-90000).max(90000).step(1).name('Position-y');
-				folderMainSettings.add(mesh_Tube01.position, 'z').min(-90000).max(90000).step(1).name('Position-z');
+				folderCamera.add(mesh_Tube01.position, 'x').min(-90000).max(90000).step(1).name('Position-x');
+				folderCamera.add(mesh_Tube01.position, 'y').min(-90000).max(90000).step(1).name('Position-y');
+				folderCamera.add(mesh_Tube01.position, 'z').min(-90000).max(90000).step(1).name('Position-z');
 
 				// Search.GUI.TestSettings.Scale
 
-				folderMainSettings.add(mesh_Tube01.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
-				folderMainSettings.add(mesh_Tube01.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
-				folderMainSettings.add(mesh_Tube01.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
+				folderCamera.add(mesh_Tube01.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
+				folderCamera.add(mesh_Tube01.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
+				folderCamera.add(mesh_Tube01.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
 
 				// Search.GUI.TestSettings.Rotation
-				folderMainSettings.add(mesh_Tube01.rotation, 'x').min(-100).max(100).step(1).name('Rotation-x');
-				folderMainSettings.add(mesh_Tube01.rotation, 'y').min(-100).max(100).step(1).name('Rotation-y');
-				folderMainSettings.add(mesh_Tube01.rotation, 'z').min(-100).max(100).step(1).name('Rotation-z');
+				folderCamera.add(mesh_Tube01.rotation, 'x').min(-100).max(100).step(1).name('Rotation-x');
+				folderCamera.add(mesh_Tube01.rotation, 'y').min(-100).max(100).step(1).name('Rotation-y');
+				folderCamera.add(mesh_Tube01.rotation, 'z').min(-100).max(100).step(1).name('Rotation-z');
 
 				
-				const folderPositions = gui.addFolder('Positions')
-				const folderScale = gui.addFolder('TestObjectScale')
-				const folderRotation = gui.addFolder('TestObjectRotation')
+				const WoodMatTransformations = gui.addFolder('Wood Material Transformations')
+				// Search.GUI.TestSettings - Scale
+				WoodMatTransformations.add(mesh_WoodMat_Tester.position, 'x').min(-90000).max(90000).step(1).name('Position-x');
+				WoodMatTransformations.add(mesh_WoodMat_Tester.position, 'y').min(-90000).max(90000).step(1).name('Position-y');
+				WoodMatTransformations.add(mesh_WoodMat_Tester.position, 'z').min(-90000).max(90000).step(1).name('Position-z');
+
+				// Search.GUI.TestSettings.Scale
+
+				WoodMatTransformations.add(mesh_WoodMat_Tester.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
+				WoodMatTransformations.add(mesh_WoodMat_Tester.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
+				WoodMatTransformations.add(mesh_WoodMat_Tester.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
+
+				// Search.GUI.TestSettings.Rotation
+				WoodMatTransformations.add(mesh_WoodMat_Tester.rotation, 'x').min(-100).max(100).step(1).name('Rotation-x');
+				WoodMatTransformations.add(mesh_WoodMat_Tester.rotation, 'y').min(-100).max(100).step(1).name('Rotation-y');
+				WoodMatTransformations.add(mesh_WoodMat_Tester.rotation, 'z').min(-100).max(100).step(1).name('Rotation-z');
+
+				// ***************************
+				// FolderGearDecoration - Object
+				// ***************************
+				const folderGearDecoration = gui.addFolder('Gear Decoration Object')
+
+				// Search.GUI.TestSettings - Scale
+				folderGearDecoration.add(GearDecorationA.position, 'x').min(-90000).max(90000).step(1).name('Position-x');
+				folderGearDecoration.add(GearDecorationA.position, 'y').min(-90000).max(90000).step(1).name('Position-y');
+				folderGearDecoration.add(GearDecorationA.position, 'z').min(-90000).max(90000).step(1).name('Position-z');
+
+				// Search.GUI.TestSettings.Scale
+
+				folderGearDecoration.add(GearDecorationA.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
+				folderGearDecoration.add(GearDecorationA.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
+				folderGearDecoration.add(GearDecorationA.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
+
+				// Search.GUI.TestSettings.Rotation
+				folderGearDecoration.add(GearDecorationA.rotation, 'x').min(-100).max(100).step(1).name('Rotation-x');
+				folderGearDecoration.add(GearDecorationA.rotation, 'y').min(-100).max(100).step(1).name('Rotation-y');
+				folderGearDecoration.add(GearDecorationA.rotation, 'z').min(-100).max(100).step(1).name('Rotation-z');
+
+
+				// ***************************
+				// FolderGearDecoration - Gear01
+				// ***************************
+				const folderGear01 = gui.addFolder('Gear01')
+
+				// Search.GUI.TestSettings - Scale
+				folderGear01.add(mesh_Gear06_L01.position, 'x').min(-90000).max(90000).step(1).name('Position-x');
+				folderGear01.add(mesh_Gear06_L01.position, 'y').min(-90000).max(90000).step(1).name('Position-y');
+				folderGear01.add(mesh_Gear06_L01.position, 'z').min(-90000).max(90000).step(1).name('Position-z');
+
+				// Search.GUI.TestSettings.Scale
+
+				folderGear01.add(mesh_Gear06_L01.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
+				folderGear01.add(mesh_Gear06_L01.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
+				folderGear01.add(mesh_Gear06_L01.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
+
+				// Search.GUI.TestSettings.Rotation
+				folderGear01.add(mesh_Gear06_L01.rotation, 'x').min(-100).max(100).step(1).name('Rotation-x');
+				folderGear01.add(mesh_Gear06_L01.rotation, 'y').min(-100).max(100).step(1).name('Rotation-y');
+				folderGear01.add(mesh_Gear06_L01.rotation, 'z').min(-100).max(100).step(1).name('Rotation-z');
 
 
 				
@@ -1258,8 +1459,20 @@
 				// Only for Testing
 				// mesh_gridbox_Tester.rotation.y = time * 0.0001;
 
-				camera.position.z = time * 0.001
+				// camera.position.z = time * 0.001
 				particles.rotation.z = time * 0.001
+
+				// Gear Decoration - Gear Rotations
+				// Search.Animate.Gears
+				mesh_Gear01_L01.rotation.z = time * 0.001
+				mesh_Gear01_L02.rotation.z = time * -0.001
+				mesh_Gear02_L01.rotation.z = time * 0.001
+				mesh_Gear02_L02.rotation.z = time * -0.001
+				mesh_Gear03_L01.rotation.z = time * -0.001
+				mesh_Gear04_L01.rotation.z = time * -0.001
+				mesh_Gear05_L01.rotation.z = time * 0.001
+				mesh_Gear06_L01.rotation.z = time * 0.001
+				mesh_Gear06_L02.rotation.z = time * -0.001
 
 				prevTime = time;
 
