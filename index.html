@@ -397,6 +397,9 @@
 			let mesh_Torus02, mesh_gridbox02_Tester
 			let mesh_FenceBannerL0, mesh_gridbox4_Tester, mesh_WoodMat_Tester
 
+			// BarrierBox Declarations
+			let mesh_BarrierBoxLeftA01
+
 			// Mesh_Gear01_L01
 			let mesh_Gear01_L01, mesh_Gear01_L02
 			let mesh_Gear02_L01, mesh_Gear02_L02
@@ -910,7 +913,7 @@
 				scene.add(mesh_gridbox_Tester);
 				objects.push(mesh_gridbox_Tester)
 
-				const geo_gridbox02_Tester = new THREE.BoxGeometry(210000, 110000, 110000, 32, 32, 32)
+				const geo_gridbox02_Tester = new THREE.BoxGeometry(1210000, 1110000, 1110000, 32, 32, 32)
 				const mat_gridbox02_Tester = new THREE.MeshBasicMaterial({ map: testImg02, side: THREE.DoubleSide });
 				mesh_gridbox02_Tester = new THREE.Mesh(geo_gridbox02_Tester, mat_gridbox02_Tester);
 				mat_gridbox02_Tester.transparent = false;
@@ -953,6 +956,24 @@
 				mesh_Tube01.scale.set(3.5, 100, 3.5)
 				scene.add(mesh_Tube01);
 				objects.push(mesh_Tube01)
+
+
+
+			 	const BarrierBox = new THREE.Group()
+
+				const geo_BarrierBoxLeftA01 = new THREE.PlaneGeometry(10000, 10000)
+				const mat_BarrierBoxLeftA01 = new THREE.MeshBasicMaterial({ map: testImg02, side: THREE.DoubleSide });
+				mesh_BarrierBoxLeftA01 = new THREE.Mesh(geo_BarrierBoxLeftA01, mat_BarrierBoxLeftA01);
+				mat_BarrierBoxLeftA01.transparent = false;
+				mat_BarrierBoxLeftA01.alphaMap = testImg02;
+				// mesh_BarrierBoxLeftA01.rotateX( - Math.PI / 2 )
+				mesh_BarrierBoxLeftA01.position.set(0, 70000, 70000)
+				mesh_BarrierBoxLeftA01.scale.set(12, 6, 0)
+				BarrierBox.add(mesh_BarrierBoxLeftA01)
+
+
+				// Final Scene.add()
+				scene.add(BarrierBox)
 
 
 				const FenceTest = new THREE.Group()
@@ -1285,23 +1306,24 @@
 				// ***************************
 				// FolderGearDecoration - Gear01
 				// ***************************
-				const folderGear01 = gui.addFolder('Gear01')
+				const folderGear01 = gui.addFolder('BarrierBox-Left')
+				folderGear01.isClosed = true
 
 				// Search.GUI.TestSettings - Scale
-				folderGear01.add(mesh_Gear06_L01.position, 'x').min(-90000).max(90000).step(1).name('Position-x');
-				folderGear01.add(mesh_Gear06_L01.position, 'y').min(-90000).max(90000).step(1).name('Position-y');
-				folderGear01.add(mesh_Gear06_L01.position, 'z').min(-90000).max(90000).step(1).name('Position-z');
+				folderGear01.add(mesh_BarrierBoxLeftA01.position, 'x').min(-90000).max(90000).step(1).name('Position-x');
+				folderGear01.add(mesh_BarrierBoxLeftA01.position, 'y').min(-90000).max(90000).step(1).name('Position-y');
+				folderGear01.add(mesh_BarrierBoxLeftA01.position, 'z').min(-90000).max(90000).step(1).name('Position-z');
 
 				// Search.GUI.TestSettings.Scale
 
-				folderGear01.add(mesh_Gear06_L01.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
-				folderGear01.add(mesh_Gear06_L01.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
-				folderGear01.add(mesh_Gear06_L01.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
+				folderGear01.add(mesh_BarrierBoxLeftA01.scale, 'x').min(-100).max(100).step(1).name('Scale-x');
+				folderGear01.add(mesh_BarrierBoxLeftA01.scale, 'y').min(-100).max(100).step(1).name('Scale-y');
+				folderGear01.add(mesh_BarrierBoxLeftA01.scale, 'z').min(-100).max(100).step(1).name('Scale-z');
 
 				// Search.GUI.TestSettings.Rotation
-				folderGear01.add(mesh_Gear06_L01.rotation, 'x').min(-100).max(100).step(1).name('Rotation-x');
-				folderGear01.add(mesh_Gear06_L01.rotation, 'y').min(-100).max(100).step(1).name('Rotation-y');
-				folderGear01.add(mesh_Gear06_L01.rotation, 'z').min(-100).max(100).step(1).name('Rotation-z');
+				folderGear01.add(mesh_BarrierBoxLeftA01.rotation, 'x').min(-100).max(100).step(1).name('Rotation-x');
+				folderGear01.add(mesh_BarrierBoxLeftA01.rotation, 'y').min(-100).max(100).step(1).name('Rotation-y');
+				folderGear01.add(mesh_BarrierBoxLeftA01.rotation, 'z').min(-100).max(100).step(1).name('Rotation-z');
 
 
 				
@@ -1461,6 +1483,9 @@
 
 				// camera.position.z = time * 0.001
 				particles.rotation.z = time * 0.001
+
+				// BarrierBox Animations
+				mesh_BarrierBoxLeftA01.position.x = time * (Math.PI / 2)
 
 				// Gear Decoration - Gear Rotations
 				// Search.Animate.Gears
